@@ -14,22 +14,10 @@ import createEngine from 'redux-storage-engine-reactnativeasyncstorage';
 const engine = createEngine('HEMATQU');
 
 import { SET_DEVICE } from './actions/AppActions';
-
 import SplashScreen from './screen/splashScreen';
-
-
-// import filter from 'redux-storage-decorator-filter';
-
-// engine = filter(engine, [
-//   'Login',
-//   'AppData'
-// ], [
-//   'Device'
-// ]);
 
 const storageMiddleware = storage.createMiddleware(engine,[SET_DEVICE]);
 const reducer = storage.reducer(combineReducers(reducers));
-//const reducer = combineReducers(reducers);
 const store = createStore(reducer,
   applyMiddleware(
     thunkMiddleware,

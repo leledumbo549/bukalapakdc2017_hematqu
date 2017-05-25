@@ -42,18 +42,6 @@ module.exports.getStorage = function() {
   return AsyncStorage;
 }
 
-// module.exports.saveJson = function(name,json) {
-//   return AsyncStorage.setItem(name, JSON.stringify(json));
-// }
-
-// module.exports.loadJson = function(name) {
-//   return AsyncStorage.getItem(name)
-//     .then(val=>{
-//       if(!val) return null;
-//       return JSON.parse(val);
-//     })
-// }
-
 module.exports.openURL = function(url) {
   Linking.canOpenURL(url).then(supported => {
     if (supported) {
