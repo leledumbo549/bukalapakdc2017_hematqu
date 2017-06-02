@@ -75,9 +75,11 @@ class Main extends Component {
     console.log('isActive: ', openResult.notification.isAppInFocus);
     console.log('openResult: ', openResult);
     
-    platform.historyPushByParam('newNotification',{detail:{
-      msg:openResult.notification.payload.body
-    }});
+    // platform.historyPushByParam('newNotification',{detail:{
+    //   msg:openResult.notification.payload.body
+    // }});
+
+    platform.historyReplace('launch');
   }
 
   render() {

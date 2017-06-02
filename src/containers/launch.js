@@ -31,35 +31,35 @@ class Launch extends Component {
   }
 
   enterHome() {
-    platform.historyReplace('drawer');
+    // platform.historyReplace('drawer');
 
-    // const connected = this.props.stateDevice.connectionStatus;
-    // if( !connected ) return platform.historyReplace('drawer');
+    const connected = this.props.stateDevice.connectionStatus;
+    if( !connected ) return platform.historyReplace('drawer');
 
-    // const reportService = feathersLib.getApp().service('notifications');
-    // const userId = this.props.stateLogin.user._id;
-    // const query = {
-    //   $sort: { createdTime: -1 },
-    //   $limit: 1,
-    //   forUserId: userId
-    // };
+    const reportService = feathersLib.getApp().service('notifications');
+    const userId = this.props.stateLogin.user._id;
+    const query = {
+      $sort: { createdTime: -1 },
+      $limit: 1,
+      forUserId: userId
+    };
 
-    // reportService.find({query})
-    // .then(result=>{
-    //   if(result.total == 0) throw null;
-    //   const reportId = result.data[0]._id;
+    reportService.find({query})
+    .then(result=>{
+      if(result.total == 0) throw null;
+      const reportId = result.data[0]._id;
       
-    //   if( this.props.stateDevice.lastNotificationId == reportId ) throw null;
-    //   this.props.actions.setLastNotificationId(reportId);
-    //   platform.historyPushByParam('newNotification',{detail:{
-    //     msg:openResult.notification.payload.body
-    //   }});
-    // })
-    // .catch(err=>{
-    //   if(err) console.warn(err);
-    //   platform.historyReplace('drawer');
-    // });
-    
+      if( this.props.stateDevice.lastNotificationId == reportId ) throw null;
+
+      const detail = result.data[0];
+      this.props.actions.setLastNotificationId(reportId);
+      platform.historyPushByParam('newNotification',{detail:detail});
+
+    })
+    .catch(err=>{
+      if(err) console.warn(err);
+      platform.historyReplace('drawer');
+    });    
   }
 
   render() {
