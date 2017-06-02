@@ -23,11 +23,16 @@ export default class ImportantScreen extends Component {
     const mm = moment.unix(detail.createdTime);
     const mmStr = mm.format("dddd, D MMMM YYYY, HH:mm");
     const data = detail.report;
+    let title = 'LAPORAN HARIAN';
+    if( detail.kind != 'daily' ) title = 'PERUBAHAN HARGA';
       
     return (
       <View style={{flex:1,paddingTop:54}}>
         <View style={{flex:1,padding:6*vw,justifyContent:'flex-end',alignItems:'center'}}>
           <Icon name='envelope-o' size={30}/>
+          <Text style={{textAlign:'center',fontWeight:'bold'}}>
+            {title}
+          </Text>  
           <Text />
           <Text style={{textAlign:'center'}}>
             {mmStr}
@@ -50,8 +55,10 @@ export default class ImportantScreen extends Component {
 
 
   renderRow(item) {
+    const detail = this.props.detail;
+        
     const name = item.name.toUpperCase();    
-    const delta = ' '+Math.abs(item.delta);    
+    let delta = ' '+Math.abs(item.delta);    
     let ico = 'arrow-up';
     let col = 'red';
 
@@ -60,6 +67,16 @@ export default class ImportantScreen extends Component {
       col = 'green';
     }
 
+    let sign = <View><Icon name={ico} color={col}/></View>;
+
+    if( detail.kind == 'daily' ) {
+      sign = null;
+      col = 'black';
+      if( item.price )
+        delta = 'Rp. '+item.price;
+      else
+        delta = '';
+    }
 
     return (
       <View         
@@ -77,9 +94,7 @@ export default class ImportantScreen extends Component {
             <View style={{flex:1,padding:vw}}>
               <Text>{name}</Text>
             </View>
-            <View>              
-              <Icon name={ico} color={col}/>
-            </View>
+            {sign}
             <View>              
               <Text style={{color:col}}>{delta}</Text>
             </View>

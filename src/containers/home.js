@@ -26,10 +26,10 @@ class Home extends Component {
       });      
     }
 
-    const itemService = feathersLib.getApp().service('items');
-    itemService.on('patched', item => {
-      this.refresh();
-    });
+    // const itemService = feathersLib.getApp().service('items');
+    // itemService.on('patched', item => {
+    //   this.refresh();
+    // });
   }
 
   refresh() {
@@ -37,10 +37,10 @@ class Home extends Component {
   }
 
   componentWillUnmount() {
-    const itemService = feathersLib.getApp().service('items');
+    // const itemService = feathersLib.getApp().service('items');
 
-    itemService.on('patched', item => {      
-    });    
+    // itemService.on('patched', item => {      
+    // });    
   }
 
   removeItem(itemId) {

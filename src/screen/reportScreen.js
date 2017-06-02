@@ -58,16 +58,21 @@ export default class ReportScreen extends Component {
     const price = 'Rp. '+item.totalPrice;
     let mmStr = mm.format("D MMMM YYYY");
     let title = null;
+    let space = null;
 
     if( item.kind && item.kind == 'daily') {
+      const titleStr = ''+mmStr+' '+price;
+
       title = (
         <View style={{flexDirection: 'row',justifyContent:'space-between'}}>
-          <View style={{flex:1}}><Text style={{fontWeight:'bold'}}>{mmStr} {price}</Text></View>
+          <View style={{flex:1}}><Text style={{fontWeight:'bold'}}>{titleStr.toUpperCase()}</Text></View>
         </View>
       );
     } else {
       mmStr = mm.format("D MMMM YYYY, HH:mm");      
-      title = <Text style={{fontWeight:'bold'}}>{mmStr}</Text>
+      title = <Text style={{fontWeight:'bold'}}>PERUBAHAN HARGA</Text>
+      msg = mmStr + '. ' + msg;
+      space = <View style={{width:5*vw}} />;
     }
 
     return (
@@ -83,9 +88,15 @@ export default class ReportScreen extends Component {
           justifyContent:'space-between',
           alignItems:'center'
         }}>
+          {space}
           <View style={{flex:1,padding:vw}}>
             {title}              
             <Text>{msg}</Text>
+          </View>
+          <View style={{padding:vw}}>
+            <ButtonIcon onPress={()=>this.onRemove(itemId)}>
+              <Icon name="trash" size={30} />
+            </ButtonIcon>
           </View>
           <View style={{padding:vw}}>
             <ButtonIcon onPress={()=>this.onSelect(itemId)}>

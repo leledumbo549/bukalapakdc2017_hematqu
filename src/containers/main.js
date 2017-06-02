@@ -40,10 +40,16 @@ class Main extends Component {
           
         });
         
+        const itemService = feathersLib.getApp().service('items');
+        itemService.on('patched', item => {
+          this.props.actions.updateHomePage();
+        });
         
       } else {
         this.props.actions.setConnectionStatus(false);
       }
+
+
 
       // this.setState({
       //   status:status

@@ -59,6 +59,9 @@ export function updateHomePage() {
           type: LOGIN_USER,
           user: result
         });
+      })
+      .catch(err=>{
+        // just ignore!
       });
 
   }

@@ -5,7 +5,7 @@ import platform from '../platform';
 import feathersLib from '../feathersLib';
 import bukalapakLib from '../bukalapakLib';
 
-class Report extends Component {
+class Important extends Component {
   constructor() {
     super();
     this.state = {
@@ -48,4 +48,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Report);
+)(Important);
