@@ -89,7 +89,7 @@ class AppRouter extends Component {
       <Main>
         <Router>
           <Scene key="root">
-            <Scene initial={true} key="launch" hideNavBar={true} component={Launch}/>
+            <Scene initial={true} key="launch" hideNavBar={true} component={Launch} type={ActionConst.RESET} />
             <Scene key="login" hideNavBar={true} component={Login} />
             <Scene key="newNotification" hideNavBar={true} component={NewNotification} type={ActionConst.RESET} />
             <Scene key="drawer" component={NavigationDrawer}>
