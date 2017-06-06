@@ -154,11 +154,29 @@ class Editor extends Component {
 
   render() {
     const products = this.props.stateItemEditor.products.slice(0);
-    products.sort((a,b)=>{
-      const ap = a.price*a.num;
-      const bp = b.price*b.num;
-      return ap-bp;
-    });
+    // products.sort((a,b)=>{
+    //   const ap = a.price*a.num;
+    //   const bp = b.price*b.num;
+    //   return ap-bp;
+    // });
+
+    let cheapestIndex = 0;
+    let cheapestPrice = -1;
+    for(let i=0;i<products.length;i++) {
+      const item = products[i];
+      const productPrice = item.price*item.num;
+      products[i].cheapest = false;
+
+      if( cheapestPrice == -1 ) {
+        cheapestIndex = 0;
+        cheapestPrice = productPrice;
+      } else if( productPrice < cheapestPrice ) {
+        cheapestIndex = i;
+        cheapestPrice = productPrice;
+      }
+    }
+    
+    products[cheapestIndex].cheapest = true;
 
     return (
       <EditScreen  

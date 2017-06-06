@@ -41,7 +41,7 @@ class ProductRow extends Component {
     const imgUrl = item.img;
 
     let cheapestStr = null;
-    if( this.props.rowIndex == 0 ) cheapestStr = <Text style={{fontSize:10,color:'green'}}>TERMURAH</Text>;
+    if( item.cheapest ) cheapestStr = <Text style={{fontSize:10,color:'green'}}>TERMURAH</Text>;
 
     const tagged = this.props.selected;
     const btn = (tagged ? 'OK' : 'TAG');
