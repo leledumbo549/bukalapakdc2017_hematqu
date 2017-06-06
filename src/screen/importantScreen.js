@@ -75,7 +75,7 @@ export default class ImportantScreen extends Component {
       if( item.price )
         delta = 'Rp. '+item.price;
       else
-        delta = '';
+        return <View />;
     }
 
     return (

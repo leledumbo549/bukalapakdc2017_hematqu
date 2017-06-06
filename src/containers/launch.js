@@ -22,7 +22,7 @@ class Launch extends Component {
 
     setTimeout(()=>{
       this.enterHome();
-    },1000);
+    },3000);
     
   }
 

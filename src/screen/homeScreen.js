@@ -60,15 +60,15 @@ export default class HomeScreen extends Component {
       let info2 = null;
       if( diff > 0 ) {
         info2 = <Text style={{textAlign:'center',fontSize:10,color:'red'}}>
-          LEBIH MAHAL DARI TOTAL BELANJA KEMARIN SEBESAR {prevStr}
+          LEBIH MAHAL DARI TOTAL BELANJA SEBELUMNYA SEBESAR {prevStr}
         </Text>;     
       } else if( diff < 0 ) {
         info2 = <Text style={{textAlign:'center',fontSize:10,color:'green'}}>
-          LEBIH MURAH DARI TOTAL BELANJA KEMARIN SEBESAR {prevStr}
+          LEBIH MURAH DARI TOTAL BELANJA SEBELUMNYA SEBESAR {prevStr}
         </Text>;
       } else {
         info2 = <Text style={{textAlign:'center',fontSize:10}}>
-          SAMA DENGAN TOTAL BELANJA KEMARIN SEBESAR {prevStr}
+          SAMA DENGAN TOTAL BELANJA SEBELUMNYA SEBESAR {prevStr}
         </Text>;
       }
       
