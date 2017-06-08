@@ -38,6 +38,8 @@ class Launch extends Component {
 
     const reportService = feathersLib.getApp().service('notifications');
     const userId = this.props.stateLogin.user._id;
+
+    // console.warn(userId);
     const query = {
       $sort: { createdTime: -1 },
       $limit: 1,

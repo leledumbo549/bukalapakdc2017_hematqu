@@ -52,16 +52,18 @@ class NewNotificationScreen extends Component {
     reportService.find({query})
     .then(result=>{
       if( result.total <= 1 ) throw 'no advice';
-      const curPrice = result.data[0].price;
+      console.warn( JSON.stringify(result.data[0]) );
+      const curPrice = result.data[0].totalPrice;
       const numDays = result.total - 1;
       let totalPrice = 0;
       let arrGraph = [];
       for(let i=0;i<result.data.length;i++) {
-        totalPrice += result.data[i].price;
-        arrGraph.unshift(result.data[i].price);
+        totalPrice += result.data[i].totalPrice;
+        arrGraph.unshift(result.data[i].totalPrice);
       }
       let avgPrice = Math.floor(totalPrice / result.data.length);
       let advice = false;
+      console.warn(avgPrice+' '+curPrice);
       
       if( curPrice > avgPrice ) {
         this.setState({
@@ -88,6 +90,7 @@ class NewNotificationScreen extends Component {
 
     })
     .catch(err=>{
+      console.warn(err);
       this.setState({
         isBusy:false,
         advice:'TUNGGULAH BEBERAPA HARI LAGI, SEBELUM MENDAPAT REKOMENDASI',
