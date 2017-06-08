@@ -3,11 +3,13 @@ const base64 = require('base-64');
 
 module.exports.linkToServer = linkToServer;
 module.exports.getToken = getToken;
+module.exports.getToken2 = getToken2;
+module.exports.getProfile = getProfile;
 module.exports.getCategories = getCategories;
 module.exports.getProductList = getProductList;
 module.exports.addCart = addCart;
 
-function linkToServer(username,password,token) {  
+function linkToServer(username,password,token,uid,name,avatar) {  
   return fetch(config.API_ADDRESS + '/link-bl-to-user', {
     headers: {
       'Accept': 'application/json',
@@ -17,7 +19,10 @@ function linkToServer(username,password,token) {
     body: JSON.stringify({
       username,
       password,
-      BLToken:token
+      BLToken:token,
+      uid,
+      name,
+      avatar
     })
   })
   .then(response => {
@@ -44,6 +49,45 @@ function getToken(username,password) {
     if( !uid || !tk ) throw 'getToken fail!';
     const token = ''+uid+':'+tk+'';
     return token;
+  });
+}
+
+function getToken2(username,password) {  
+  const userPass = ''+username+':'+password+'';
+
+  return fetch('https://api.bukalapak.com/v2/authenticate.json', {
+    headers: {
+      'Authorization': 'Basic '+base64.encode(userPass),
+    },
+    method: 'POST'
+  })
+  .then(response => {
+    return response.json();
+  })
+  .then(result => {
+    const uid = result.user_id;
+    const tk = result.token;
+    if( !uid || !tk ) throw 'getToken2 fail!';
+    const token = ''+uid+':'+tk+'';
+    return {token,userId:uid};
+  });
+}
+
+function getProfile(token) {  
+  return fetch('https://api.bukalapak.com/v2/users/info.json', {
+    headers: {
+      'Authorization': 'Basic '+base64.encode(token),
+    },
+    method: 'GET'
+  })
+  .then(response => {
+    return response.json();
+  })
+  .then(result => {
+    if(!result || result.status != 'OK' ) throw "getProfile fail!!";
+    const name = result.user.name;
+    const avatar = result.user.avatar;
+    return {name,avatar};
   });
 }
 
@@ -91,10 +135,12 @@ function getProductList(token,categoryId,searchTerm) {
     const arr = [];
     for(let i=0;i<prods.length;i++) {
       const prod = prods[i];
+      // console.warn(JSON.stringify(prod));
       arr.push({
         id:prod.id,
         name:prod.name,
         seller:prod.seller_name,
+        sellerId:prod.seller_id,
         price:prod.price,
         img:prod.small_images[0],
         num:1

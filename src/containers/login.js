@@ -23,9 +23,20 @@ class Login extends Component {
       isBusy:true
     });
 
-    bukalapakLib.getToken(user,pass)
-    .then(token=>{
-      return bukalapakLib.linkToServer(user,pass,token);
+    let bl = {};
+
+    bukalapakLib.getToken2(user,pass)
+    .then(result=>{
+      console.warn(JSON.stringify(result));
+      bl.token = result.token;
+      bl.userId = result.userId;
+      return bukalapakLib.getProfile(result.token)
+    })
+    .then(result=>{
+      console.warn(JSON.stringify(result));
+      bl.name = result.name;
+      bl.avatar = result.avatar;
+      return bukalapakLib.linkToServer(user,pass,bl.token,bl.userId,bl.name,bl.avatar);
     })    
     .then(success=>{
       if(!success) throw "linkToServer error";

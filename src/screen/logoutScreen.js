@@ -36,7 +36,7 @@ class LogoutScreen extends Component {
 
     setTimeout(()=>{
       platform.historyReplace('launch');
-    },3000);    
+    },5000);    
     
   }
 

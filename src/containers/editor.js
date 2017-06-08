@@ -55,8 +55,10 @@ class Editor extends Component {
     });
     
     const all = [];
+    const sellers = [];
     for(let i=0;i<products.length;i++) {
       all.push(products[i].id);
+      sellers.push(products[i].sellerId);
     }
 
     const cheapest = products[0];
@@ -71,10 +73,12 @@ class Editor extends Component {
       prevPrice:cheapestPrice,
       img:cheapest.img,
       all:all,
-
+      sellers:sellers,
       titleVal:this.props.stateItemEditor.title,
       products:products
     }
+
+    console.warn(JSON.stringify(products));
 
     const items = feathersLib.getApp().service('items');
 
@@ -176,7 +180,8 @@ class Editor extends Component {
       }
     }
     
-    products[cheapestIndex].cheapest = true;
+    if( products.length > 0)
+      products[cheapestIndex].cheapest = true;
 
     return (
       <EditScreen  
