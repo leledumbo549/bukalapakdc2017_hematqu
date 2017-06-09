@@ -47,6 +47,14 @@ class DrawerScreen extends Component {
               <Text>NOTIFIKASI MASUK</Text>
             </View>
           </Button>
+          <Button onPress={()=>this.openTab(4)}>
+            <View style={{flexDirection:'row',justifyContent:'space-between',padding:5*vw,alignItems:'center',
+              borderBottomColor: 'gainsboro',
+              borderBottomWidth: StyleSheet.hairlineWidth}}>
+              <Icon name="group" size={30} />
+              <Text>DAFTAR PEMINAT</Text>
+            </View>
+          </Button>
           <Button onPress={()=>this.openTab(3)}>
             <View style={{flexDirection:'row',justifyContent:'space-between',padding:5*vw,alignItems:'center',
               borderBottomColor: 'gainsboro',
@@ -55,7 +63,7 @@ class DrawerScreen extends Component {
               <Text>TENTANG KAMI</Text>
             </View>
           </Button>
-          <Button onPress={()=>this.openTab(4)}>
+          <Button onPress={()=>this.openTab(5)}>
             <View style={{flexDirection:'row',justifyContent:'space-between',padding:5*vw,alignItems:'center',
               borderBottomColor: 'gainsboro',
               borderBottomWidth: StyleSheet.hairlineWidth}}>

@@ -8,6 +8,36 @@ module.exports.getProfile = getProfile;
 module.exports.getCategories = getCategories;
 module.exports.getProductList = getProductList;
 module.exports.addCart = addCart;
+module.exports.getInterestList = getInterestList;
+module.exports.getInterestItems = getInterestItems;
+
+function getInterestList(uid) {  
+  return fetch(config.API_ADDRESS + '/get-interest-list/'+uid, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: 'GET'
+  })
+  .then(response => {
+    if(response.status == 200) return response.json();
+    return false;
+  });
+}
+
+function getInterestItems(uid,interestId) {  
+  return fetch(config.API_ADDRESS + '/get-interest-items/'+uid+'/'+interestId, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: 'GET'
+  })
+  .then(response => {
+    if(response.status == 200) return response.json();
+    return false;
+  });
+}
 
 function linkToServer(username,password,token,uid,name,avatar) {  
   return fetch(config.API_ADDRESS + '/link-bl-to-user', {

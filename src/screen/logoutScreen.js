@@ -63,11 +63,11 @@ class LogoutScreen extends Component {
     return (
       <View style={{flex:1,justifyContent:'center',alignItems:'center',paddingTop:0}}>
         <View style={{padding:2*vw}}>
-          <View style={{padding:3*vw,alignItems:'center'}}>
+          <View style={{padding:10*vw,alignItems:'center'}}>
             <Icon name="sign-out" size={30} />
             <Text style={{textAlign:'center'}}>
-              JANGAN KHAWATIR, WALAUPUN APP TIDAK DIJALANKAN, HEMATQU AKAN TERUS MEMANTAU PERUBAHAN HARGA DI DAFTAR BELANJAMU,
-              DAN MENGIRIM NOTIFIKASI KETIKA TOTAL HARGA BERUBAH.
+              HEMATQU AKAN TERUS MEMANTAU PERUBAHAN HARGA DI DAFTAR BELANJAMU,
+              DAN MENGIRIM NOTIFIKASI KETIKA HARGA BERUBAH.
             </Text>
           </View>        
           {btns}

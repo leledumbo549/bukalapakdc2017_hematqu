@@ -19,6 +19,9 @@ import Notification from './containers/notification';
 import Shop from './containers/shop';
 import Report from './containers/report';
 import Important from './containers/important';
+import Interest from './containers/interest';
+import InterestItems from './containers/interestitems';
+import Chat from './containers/chat';
 import NewNotification from './screen/newNotificationScreen';
 
 // ** drawer & header **
@@ -114,6 +117,9 @@ class AppRouter extends Component {
                   <Scene key="shop" component={Shop}
                     renderTitle={()=>this.renderTitle(true)}  
                     renderBackButton={this.renderBlank} />
+                  <Scene key="mychat" component={Chat}
+                    renderTitle={()=>this.renderTitle(true)}  
+                    renderBackButton={this.renderBlank} />
                 </Scene>
                 <Scene key="tab2"
                   navigationBarStyle={{backgroundColor:'crimson'}} >
@@ -128,7 +134,19 @@ class AppRouter extends Component {
                   renderTitle={()=>this.renderTitle(false)} 
                   renderLeftButton={this.renderBlank}
                   navigationBarStyle={{backgroundColor:'crimson'}} />
-                <Scene key="tab4" component={LogOut} 
+                <Scene key="tab4"
+                  navigationBarStyle={{backgroundColor:'crimson'}} >
+                  <Scene key="interest" initial={true} component={Interest} type={ActionConst.RESET} 
+                    renderTitle={()=>this.renderTitle(false)} 
+                    renderLeftButton={this.renderBlank} />
+                  <Scene key="interestitems" component={InterestItems}
+                    renderTitle={()=>this.renderTitle(true)}  
+                    renderBackButton={this.renderBlank} />
+                  <Scene key="chat" component={Chat}
+                    renderTitle={()=>this.renderTitle(true)}  
+                    renderBackButton={this.renderBlank} />
+                </Scene>
+                <Scene key="tab5" component={LogOut} 
                   renderTitle={()=>this.renderTitle(false)} 
                   renderLeftButton={this.renderBlank}
                   navigationBarStyle={{backgroundColor:'crimson'}} />

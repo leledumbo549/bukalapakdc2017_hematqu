@@ -106,6 +106,22 @@ class Home extends Component {
     platform.historyPush('shop'); 
   }
 
+  enterChat() {
+    const items = this.props.stateAppData.items;
+    if(!items || items.length == 0 ) return platform.alertOK('','Daftar belanjamu masih kosong. Tambah catatan terlebih dahulu.');
+
+    const user = this.props.stateLogin.user;
+    const param = {
+      userIdToListen:user._id,
+      senderId:user._id,
+      senderName:user.name,
+      senderAvatar:user.avatar
+    };
+    // console.warn(JSON.stringify(param));
+
+    platform.historyPushByParam('mychat',param); 
+  }
+
   enterLogout() {
     const connected = this.props.stateDevice.connectionStatus;
     if( !connected ) {
@@ -154,7 +170,7 @@ class Home extends Component {
         onClick1={()=>this.enterEditor()} 
         onClick2={()=>this.enterNotification()} 
         onClick3={()=>this.enterShopping()}
-        onClick4={()=>this.enterLogout()}
+        onClick4={()=>this.enterChat()}
         items={items}
         onRemoveItem={(itemId)=>this.removeItem(itemId)}
         onEditItem={(itemId)=>this.editItem(itemId)}

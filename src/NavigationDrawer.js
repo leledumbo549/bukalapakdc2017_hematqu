@@ -20,6 +20,7 @@ class NavigationDrawer extends React.Component {
     else if(index == 2) platform.historyPush('tab2');
     else if(index == 3) platform.historyPush('tab3');
     else if(index == 4) platform.historyPush('tab4');
+    else if(index == 5) platform.historyPush('tab5');
   }
 
   render() {

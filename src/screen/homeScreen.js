@@ -123,6 +123,14 @@ export default class HomeScreen extends Component {
               </ButtonIcon>
             </View>
             <View style={{flex:1,padding:1*vw}}>
+              <ButtonIcon onPress={()=>this.props.onClick4()}>
+                <View style={{alignItems:'center',backgroundColor:'crimson',padding:2*vw}}>
+                  <Icon name="wechat" size={30} color='white'/>
+                  <Text style={{color:'white'}}>CHAT</Text>
+                </View>
+              </ButtonIcon>
+            </View>
+            <View style={{flex:1,padding:1*vw}}>
               <ButtonIcon onPress={()=>this.props.onClick3()}>
                 <View style={{alignItems:'center',backgroundColor:'crimson',padding:2*vw}}>
                   <Icon name="cart-arrow-down" size={30} color='white'/>
